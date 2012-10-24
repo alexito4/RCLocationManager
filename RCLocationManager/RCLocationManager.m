@@ -296,14 +296,17 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 {
     NSLog(@"[%@] locationManager:didUpdateToLocation:fromLocation: %@", NSStringFromClass([self class]), newLocation);
     
-    if (_isOnlyOneRefresh) {
-        [_userLocationManager stopUpdatingLocation];
-        _isOnlyOneRefresh = NO;
-    }
-    
     // Call location block
     if (self.locationBlock != nil) {
         self.locationBlock(manager, newLocation, oldLocation);
+        if (_isOnlyOneRefresh) {
+            self.locationBlock = nil;
+        }
+    }
+    
+    if (_isOnlyOneRefresh) {
+        [_userLocationManager stopUpdatingLocation];
+        _isOnlyOneRefresh = NO;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:RCLocationManagerUserLocationDidChangeNotification
