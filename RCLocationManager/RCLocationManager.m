@@ -88,7 +88,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (id)init
 {
-    NSLog(@"[%@] init:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] init:", NSStringFromClass([self class]));
     
     if (self = [super init]) {
         // Init
@@ -101,7 +101,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 - (id)initWithUserDistanceFilter:(CLLocationDistance)userDistanceFilter userDesiredAccuracy:(CLLocationAccuracy)userDesiredAccuracy purpose:(NSString *)purpose delegate:(id<RCLocationManagerDelegate>)delegate
 {
     
-    NSLog(@"[%@] init:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] init:", NSStringFromClass([self class]));
     
     if (self = [super init]) {
         // Init
@@ -118,7 +118,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)_init
 {
-    NSLog(@"[%@] _init:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] _init:", NSStringFromClass([self class]));
     
     _isUpdatingUserLocation = NO;
     _isOnlyOneRefresh = NO;
@@ -143,7 +143,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 - (void)_addRegionForMonitoring:(CLRegion *)region desiredAccuracy:(CLLocationAccuracy)accuracy
 {
     NSSet *regions = self.regionLocationManager.monitoredRegions;
-    NSLog(@"[%@] _addRegionForMonitoring:desiredAccuracy: [regions count]: %d", NSStringFromClass([self class]), [regions count]);
+    //NSLog(@"[%@] _addRegionForMonitoring:desiredAccuracy: [regions count]: %d", NSStringFromClass([self class]), [regions count]);
     
     NSAssert([CLLocationManager regionMonitoringAvailable] || [CLLocationManager regionMonitoringEnabled], @"RegionMonitoring not available!");
     NSAssert([regions count] < MAX_MONITORING_REGIONS, @"Only support %d regions!", MAX_MONITORING_REGIONS);
@@ -159,7 +159,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
  */
 - (BOOL)region:(CLRegion *)region inRegion:(CLRegion *)otherRegion
 {
-    NSLog(@"[%@] region:containsRegion:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] region:containsRegion:", NSStringFromClass([self class]));
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:region.center.latitude longitude:region.center.longitude];
     CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:otherRegion.center.latitude longitude:otherRegion.center.longitude];
@@ -179,7 +179,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
  */
 - (BOOL)isMonitoringThisCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    NSLog(@"[%@] isMonitoringThisCoordinate:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] isMonitoringThisCoordinate:", NSStringFromClass([self class]));
     
     NSSet *regions = self.regionLocationManager.monitoredRegions;
     
@@ -196,7 +196,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
  */
 - (BOOL)isMonitoringThisRegion:(CLRegion *)region
 {
-    NSLog(@"[%@] isMonitoringThisRegion:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] isMonitoringThisRegion:", NSStringFromClass([self class]));
     
     NSSet *regions = self.regionLocationManager.monitoredRegions;
     
@@ -212,7 +212,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setUserDistanceFilter:(CLLocationDistance)userDistanceFilter
 {
-    NSLog(@"[%@] setUserDistanceFilter:%f", NSStringFromClass([self class]), userDistanceFilter);
+    //NSLog(@"[%@] setUserDistanceFilter:%f", NSStringFromClass([self class]), userDistanceFilter);
     
     _userDistanceFilter = userDistanceFilter;
     [_userLocationManager setDistanceFilter:_userDistanceFilter];
@@ -220,7 +220,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setUserDesiredAccuracy:(CLLocationAccuracy)userDesiredAccuracy
 {
-    NSLog(@"[%@] setUserDesiredAccuracy:%f", NSStringFromClass([self class]), userDesiredAccuracy);
+    //NSLog(@"[%@] setUserDesiredAccuracy:%f", NSStringFromClass([self class]), userDesiredAccuracy);
     
     _userDesiredAccuracy = userDesiredAccuracy;
     [_userLocationManager setDesiredAccuracy:_userDesiredAccuracy];
@@ -228,7 +228,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setRegionDistanceFilter:(CLLocationDistance)regionDistanceFilter
 {
-    NSLog(@"[%@] setRegionDistanceFilter:%f", NSStringFromClass([self class]), regionDistanceFilter);
+    //NSLog(@"[%@] setRegionDistanceFilter:%f", NSStringFromClass([self class]), regionDistanceFilter);
     
     _regionDistanceFilter = regionDistanceFilter;
     [_regionLocationManager setDistanceFilter:_regionDistanceFilter];
@@ -236,7 +236,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setRegionDesiredAccuracy:(CLLocationAccuracy)regionDesiredAccuracy
 {
-    NSLog(@"[%@] setRegionDesiredAccuracy:%f", NSStringFromClass([self class]), regionDesiredAccuracy);
+    //NSLog(@"[%@] setRegionDesiredAccuracy:%f", NSStringFromClass([self class]), regionDesiredAccuracy);
     
     _regionDesiredAccuracy = regionDesiredAccuracy;
     [_regionLocationManager setDesiredAccuracy:_regionDesiredAccuracy];
@@ -244,7 +244,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setDelegate:(id<RCLocationManagerDelegate>)delegate
 {
-    NSLog(@"[%@] setDelegate:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] setDelegate:", NSStringFromClass([self class]));
     
     if (_delegate != delegate) {
         _delegate = delegate;
@@ -253,7 +253,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setPurpose:(NSString *)purpose
 {
-    NSLog(@"[%@] setPurpose:%@", NSStringFromClass([self class]), purpose);
+    //NSLog(@"[%@] setPurpose:%@", NSStringFromClass([self class]), purpose);
     
     if (![_purpose isEqualToString:purpose]) {
         self.userLocationManager.purpose = [purpose copy];
@@ -266,7 +266,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (CLLocation *)location
 {
-    NSLog(@"[%@] location:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] location:", NSStringFromClass([self class]));
     
     return self.userLocationManager.location;
 }
@@ -280,7 +280,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-	NSLog(@"[%@] locationManager:didFailWithError:%@", NSStringFromClass([self class]), error);
+	//NSLog(@"[%@] locationManager:didFailWithError:%@", NSStringFromClass([self class]), error);
     
     // Call location block
     if (self.errorLocationBlock != nil) {
@@ -294,7 +294,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"[%@] locationManager:didUpdateToLocation:fromLocation: %@", NSStringFromClass([self class]), newLocation);
+    //NSLog(@"[%@] locationManager:didUpdateToLocation:fromLocation: %@", NSStringFromClass([self class]), newLocation);
     
     // Call location block
     if (self.locationBlock != nil) {
@@ -321,7 +321,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    NSLog(@"[%@] locationManager:didEnterRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
+    //NSLog(@"[%@] locationManager:didEnterRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
     	
     if (self.regionBlock != nil) {
         self.regionBlock(manager, region, YES);
@@ -335,7 +335,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    NSLog(@"[%@] locationManager:didExitRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
+    //NSLog(@"[%@] locationManager:didExitRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
     
     if (self.regionBlock != nil) {
         self.regionBlock(manager, region, NO);
@@ -349,7 +349,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
-    NSLog(@"[%@] locationManager:monitoringDidFailForRegion:%@: %@", NSStringFromClass([self class]), region.identifier, error);
+    //NSLog(@"[%@] locationManager:monitoringDidFailForRegion:%@: %@", NSStringFromClass([self class]), region.identifier, error);
 	
     if (self.errorRegionBlock != nil) {
         self.errorRegionBlock(manager, region, error);
@@ -384,7 +384,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)startUpdatingLocation
 {
-    NSLog(@"[%@] startUpdatingLocation:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] startUpdatingLocation:", NSStringFromClass([self class]));
     
     _isUpdatingUserLocation = YES;
     [self.userLocationManager startUpdatingLocation];
@@ -407,7 +407,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)updateUserLocation
 {
-    NSLog(@"[%@] updateUserLocation:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] updateUserLocation:", NSStringFromClass([self class]));
     
     if (!_isOnlyOneRefresh) {
         _isOnlyOneRefresh = YES;
@@ -417,7 +417,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)stopUpdatingLocation
 {
-    NSLog(@"[%@] stopUpdatingLocation:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] stopUpdatingLocation:", NSStringFromClass([self class]));
     
     _isUpdatingUserLocation = NO;
     [self.userLocationManager stopUpdatingLocation];
@@ -425,7 +425,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)addCoordinateForMonitoring:(CLLocationCoordinate2D)coordinate
 {
-    NSLog(@"[%@] addCoordinateForMonitoring:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] addCoordinateForMonitoring:", NSStringFromClass([self class]));
     
     [self addCoordinateForMonitoring:coordinate withRadius:kDefaultRegionRadiusDistance desiredAccuracy:kDefaultRegionDesiredAccuracy];
 }
@@ -437,7 +437,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)addCoordinateForMonitoring:(CLLocationCoordinate2D)coordinate withRadius:(CLLocationDistance)radius desiredAccuracy:(CLLocationAccuracy)accuracy
 {
-    NSLog(@"[%@] addCoordinateForMonitoring:withRadius:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] addCoordinateForMonitoring:withRadius:", NSStringFromClass([self class]));
     
     CLRegion *region = [[CLRegion alloc] initCircularRegionWithCenter:coordinate radius:radius identifier:[NSString stringWithFormat:@"Region with center (%f, %f) and radius (%f)", coordinate.latitude, coordinate.longitude, radius]];
     
@@ -446,14 +446,14 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)addRegionForMonitoring:(CLRegion *)region
 {
-    NSLog(@"[%@] addRegionForMonitoring:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] addRegionForMonitoring:", NSStringFromClass([self class]));
     
     [self addRegionForMonitoring:region desiredAccuracy:kDefaultRegionDesiredAccuracy];
 }
 
 - (void)addRegionForMonitoring:(CLRegion *)region desiredAccuracy:(CLLocationAccuracy)accuracy
 {
-    NSLog(@"[%@] addRegionForMonitoring:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] addRegionForMonitoring:", NSStringFromClass([self class]));
     
     if (![self isMonitoringThisRegion:region]) {
         [self _addRegionForMonitoring:region desiredAccuracy:accuracy];
@@ -470,7 +470,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)stopMonitoringForRegion:(CLRegion *)region
 {
-    NSLog(@"[%@] stopMonitoringForRegion:", NSStringFromClass([self class]));
+    //NSLog(@"[%@] stopMonitoringForRegion:", NSStringFromClass([self class]));
     
     [self.regionLocationManager stopMonitoringForRegion:region];
 }
@@ -478,7 +478,7 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 - (void)stopMonitoringAllRegions
 {
     NSSet *regions = self.regionLocationManager.monitoredRegions;
-    NSLog(@"[%@] stopMonitoringAllRegion: [regions count]: %d", NSStringFromClass([self class]), [regions count]);
+    //NSLog(@"[%@] stopMonitoringAllRegion: [regions count]: %d", NSStringFromClass([self class]), [regions count]);
     
     for (CLRegion *reg in regions) {
         [self.regionLocationManager stopMonitoringForRegion:reg];
